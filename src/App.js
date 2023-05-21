@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./Navbar/navbar";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import GPA from "./Pages/GPA";
+import QPA from "./Pages/QPA";
+import ClassGrade from "./Pages/ClassGrade";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
+      <div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/gpa" element={<GPA />} />
+          <Route path="/qpa" element={<QPA />} />
+          <Route path="/classgrade" element={<ClassGrade />} />
+        </Routes>
+      </div>
     </div>
   );
 }
