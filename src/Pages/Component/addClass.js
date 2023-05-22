@@ -10,6 +10,7 @@ function AddClass(props) {
           <input
             type="text"
             id="nameInput"
+            maxLength={20}
             onChange={() =>
               props.setName(document.getElementById("nameInput").value)
             }
@@ -20,6 +21,7 @@ function AddClass(props) {
           <input
             type="text"
             id="gradeInput"
+            maxLength={20}
             onChange={() =>
               props.setGrade(document.getElementById("gradeInput").value)
             }
@@ -30,6 +32,7 @@ function AddClass(props) {
           <input
             type="number"
             id="creditsInput"
+            maxLength={20}
             onChange={() =>
               props.setCredits(document.getElementById("creditsInput").value)
             }

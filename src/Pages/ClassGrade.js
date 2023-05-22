@@ -88,14 +88,14 @@ function ClassGrade() {
   }, [deleteBool]);
 
   return (
-    <div>
+    <div className="bodyPart">
       <AddClass
         setName={setCourseName}
         setGrade={setGrade}
         setCredits={setCredits}
       />
       <button onClick={() => addCourseFunction()}>ADD</button>
-      Final Grade {finalGrade}
+      <div className="bubble">{finalGrade.toFixed(2)}</div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
           <CourseHolder

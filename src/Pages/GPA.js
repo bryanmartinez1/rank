@@ -85,14 +85,14 @@ function GPA() {
   }, [deleteBool]);
 
   return (
-    <div>
+    <div className="bodyPart">
       <AddClass
         setName={setCourseName}
         setGrade={setGrade}
         setCredits={setCredits}
       />
       <button onClick={() => addCourseFunction()}>ADD</button>
-      GPA {gpa}
+      <div className="bubble">{gpa.toFixed(3)}</div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
           <CourseHolder

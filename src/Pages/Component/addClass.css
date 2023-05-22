@@ -4,19 +4,15 @@
     align-items: center;
     border-radius: 5px;
     border-style: solid;
-}
-
-.add-title {
-    font-size: 1.5rem;
-    background-color: burlywood;
-    width: 100%;
-    text-align: center;
+    background-color: #FAF9F6;
+    max-width: 600px; 
 }
 
 .addRows {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
     width: 100%;
 }
 .addCol {
@@ -24,5 +20,9 @@
     text-align: center;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    padding: 5px;
 }
+
+/* .addCol input {
+    max-width: 100%;
+} */

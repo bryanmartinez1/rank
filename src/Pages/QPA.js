@@ -81,14 +81,14 @@ function QPA() {
   }, [deleteBool]);
 
   return (
-    <div>
+    <div className="bodyPart">
       <AddClass
         setName={setCourseName}
         setGrade={setGrade}
         setCredits={setCredits}
       />
       <button onClick={() => addCourseFunction()}>ADD</button>
-      QPA {qpa}
+      <div className="bubble">{qpa}</div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
           <CourseHolder
