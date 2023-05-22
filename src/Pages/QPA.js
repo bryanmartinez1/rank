@@ -1,35 +1,108 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import AddClass from "./Component/addClass.js";
+import CourseHolder from "./Component/courseHolder.js";
+import "./Styles/gpa.css";
 
 function QPA() {
-  var gradeMap = {};
-  gradeMap["A+"] = 2;
-  gradeMap["A"] = 2;
-  gradeMap["A-"] = 2;
-  gradeMap["B+"] = 1;
-  gradeMap["B"] = 1;
-  gradeMap["B-"] = 1;
-  gradeMap["C+"] = 0;
-  gradeMap["C"] = 0;
-  gradeMap["C-"] = 0;
-  gradeMap["D+"] = -1;
-  gradeMap["D"] = -1;
-  gradeMap["D-"] = -1;
-  gradeMap["F"] = -2;
-
-  let gradesList = ["A+", "A-", "D", "C"];
-  let creditsList = [3, 3, 3, 3];
+  // Hash Map
+  var gradeMap = new Map();
+  gradeMap.set("A+", 2);
+  gradeMap.set("A", 2);
+  gradeMap.set("A-", 2);
+  gradeMap.set("B+", 1);
+  gradeMap.set("B", 1);
+  gradeMap.set("B-", 1);
+  gradeMap.set("C+", 0);
+  gradeMap.set("C", 0);
+  gradeMap.set("C-", 0);
+  gradeMap.set("D+", -1);
+  gradeMap.set("D", -1);
+  gradeMap.set("D-", -1);
+  gradeMap.set("F", 0);
 
   function qpaCalc(gradesList, creditsList) {
     let tempQPA = 0;
-
+    if (gradesList.length === 0) {
+      return 0;
+    }
     for (let i = 0; i < gradesList.length; i++) {
-      tempQPA += gradeMap[gradesList[i]] * creditsList[i];
+      tempQPA += gradeMap.get(gradesList[i]) * Number(creditsList[i]);
     }
     return tempQPA;
   }
 
-  let qpa = qpaCalc(gradesList, creditsList);
-  return <div>QPA {qpa}</div>;
+  const [courseName, setCourseName] = useState("");
+  const [courseGrade, setGrade] = useState("A+");
+  const [courseCredits, setCredits] = useState(-1);
+  const [qpa, setQPA] = useState(0);
+  const [courseNameList, setCourseNameList] = useState([]);
+  const [gradesList, setGradesList] = useState([]);
+  const [creditsList, setCreditsList] = useState([]);
+
+  const [deleteIndex, setDeleteIndex] = useState();
+  const [deleteBool, setDeleteBool] = useState(false);
+
+  useEffect(() => {
+    console.log("Test 1");
+    setQPA(qpaCalc(gradesList, creditsList));
+  }, [courseNameList, gradesList, creditsList]);
+
+  function addCourseFunction() {
+    if (gradeMap.has(courseGrade) === false) {
+      alert(
+        "Invalid Course Grade, Please put in the form of (A+, A, A-, ..., D+, D, D-, F)"
+      );
+      return;
+    }
+    if (courseCredits < 0) {
+      alert("Invalid Credits, Must be Greater than 0 (zero)");
+      return;
+    }
+    setCourseNameList([...courseNameList, courseName]);
+    setGradesList([...gradesList, courseGrade]);
+    setCreditsList([...creditsList, courseCredits]);
+  }
+  useEffect(() => {
+    if (deleteBool === true) {
+      const updatedNameList = [...courseNameList];
+      const updatedGradeList = [...gradesList];
+      const updatedCreditsList = [...creditsList];
+
+      updatedNameList.splice(deleteIndex, 1);
+      updatedGradeList.splice(deleteIndex, 1);
+      updatedCreditsList.splice(deleteIndex, 1);
+
+      setCourseNameList(updatedNameList);
+      setGradesList(updatedGradeList);
+      setCreditsList(updatedCreditsList);
+
+      setDeleteBool(false);
+    }
+  }, [deleteBool]);
+
+  return (
+    <div>
+      <AddClass
+        setName={setCourseName}
+        setGrade={setGrade}
+        setCredits={setCredits}
+      />
+      <button onClick={() => addCourseFunction()}>ADD</button>
+      QPA {qpa}
+      <div className="coursesDisplay">
+        {courseNameList.map((name, index) => (
+          <CourseHolder
+            name={name}
+            grade={gradesList[index]}
+            credits={creditsList[index]}
+            index={index}
+            setDeleteIndex={setDeleteIndex}
+            setDeleteBool={setDeleteBool}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default QPA;
