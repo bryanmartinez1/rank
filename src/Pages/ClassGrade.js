@@ -87,6 +87,20 @@ function ClassGrade() {
     }
   }, [deleteBool]);
 
+  function letterGradeConvertor(percentGrade) {
+    if (percentGrade >= 90) {
+      return "A";
+    } else if (percentGrade >= 80) {
+      return "B";
+    } else if (percentGrade >= 70) {
+      return "C";
+    } else if (percentGrade >= 60) {
+      return "D";
+    } else {
+      return "F";
+    }
+  }
+
   return (
     <div className="bodyPart">
       <AddClass
@@ -95,7 +109,13 @@ function ClassGrade() {
         setCredits={setCredits}
       />
       <button onClick={() => addCourseFunction()}>ADD</button>
-      <div className="bubble">{finalGrade.toFixed(2)}</div>
+      <div className="bubbleHolder">
+        <div className="bubble">{finalGrade.toFixed(2)}</div>
+        <div className="equalSign">=</div>
+        <div className="bubble">
+          {letterGradeConvertor(finalGrade.toFixed(2))}
+        </div>
+      </div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
           <CourseHolder
