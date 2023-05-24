@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./courseHolder.css";
+import deleteIMG from "./images/delete.png";
 
 function CourseHolder(props) {
   function deleteCourse() {
@@ -8,12 +9,12 @@ function CourseHolder(props) {
   }
 
   let colors = [
-    "#9784ff",
-    "#ed2939",
-    "#fbdd40",
-    "#59cbe8",
-    "#ff6347",
-    "#eb6fbd",
+    "#efbbff",
+    "#bae1ff ",
+    "#baffc9 ",
+    "#ffffba ",
+    "#ffdfba ",
+    "#ffb3ba",
   ];
 
   return (
@@ -24,7 +25,11 @@ function CourseHolder(props) {
       <div className="holderText">{props.name}</div>
       <div className="holderText">{props.grade}</div>
       <div className="holderText">{props.credits}</div>
-      <button onClick={() => deleteCourse()}>Delete</button>
+      <img
+        className="deleteButton"
+        src={deleteIMG}
+        onClick={() => deleteCourse()}
+      />
     </div>
   );
 }

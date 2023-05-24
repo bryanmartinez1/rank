@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddClass from "./Component/addClass.js";
 import CourseHolder from "./Component/courseHolder.js";
+import DeleteAll from "./Component/deleteAll.js";
 import "./Styles/gpa.css";
 
 function ClassGrade() {
@@ -42,16 +43,70 @@ function ClassGrade() {
   const [courseGrade, setGrade] = useState("A+");
   const [courseCredits, setCredits] = useState(-1);
   const [finalGrade, setFinalGrade] = useState(0);
+  const [finalGradeLetter, setFinalGradeLetter] = useState("F");
   const [courseNameList, setCourseNameList] = useState([]);
   const [gradesList, setGradesList] = useState([]);
   const [creditsList, setCreditsList] = useState([]);
-
   const [deleteIndex, setDeleteIndex] = useState();
   const [deleteBool, setDeleteBool] = useState(false);
 
   useEffect(() => {
-    console.log("Test 1");
-    setFinalGrade(gradeCalc(gradesList, creditsList));
+    let tempGrade = gradeCalc(gradesList, creditsList).toFixed(2);
+    setFinalGrade(tempGrade);
+
+    if (tempGrade >= 97) {
+      document.getElementById("bubble1").style.backgroundColor = "#1790d0";
+      document.getElementById("bubble2").style.backgroundColor = "#1790d0";
+      setFinalGradeLetter("A+");
+    } else if (tempGrade >= 93) {
+      document.getElementById("bubble1").style.backgroundColor = "#50C878";
+      document.getElementById("bubble2").style.backgroundColor = "#50C878";
+      setFinalGradeLetter("A");
+    } else if (tempGrade >= 90) {
+      document.getElementById("bubble1").style.backgroundColor = "#50C878";
+      document.getElementById("bubble2").style.backgroundColor = "#50C878";
+      setFinalGradeLetter("A-");
+    } else if (tempGrade >= 87) {
+      document.getElementById("bubble1").style.backgroundColor = "#bdfb40";
+      document.getElementById("bubble2").style.backgroundColor = "#bdfb40";
+      setFinalGradeLetter("B+");
+    } else if (tempGrade >= 83) {
+      document.getElementById("bubble1").style.backgroundColor = "#bdfb40";
+      document.getElementById("bubble2").style.backgroundColor = "#bdfb40";
+      setFinalGradeLetter("B");
+    } else if (tempGrade >= 80) {
+      document.getElementById("bubble1").style.backgroundColor = "#bdfb40";
+      document.getElementById("bubble2").style.backgroundColor = "#bdfb40";
+      setFinalGradeLetter("B-");
+    } else if (tempGrade >= 77) {
+      document.getElementById("bubble1").style.backgroundColor = "#fbdd40";
+      document.getElementById("bubble2").style.backgroundColor = "#fbdd40";
+      setFinalGradeLetter("C+");
+    } else if (tempGrade >= 73) {
+      document.getElementById("bubble1").style.backgroundColor = "#fbdd40";
+      document.getElementById("bubble2").style.backgroundColor = "#fbdd40";
+      setFinalGradeLetter("C");
+    } else if (tempGrade >= 70) {
+      document.getElementById("bubble1").style.backgroundColor = "#fbdd40";
+      document.getElementById("bubble2").style.backgroundColor = "#fbdd40";
+      setFinalGradeLetter("C-");
+    } else if (tempGrade >= 67) {
+      document.getElementById("bubble1").style.backgroundColor = "#fbb040";
+      document.getElementById("bubble2").style.backgroundColor = "#fbb040";
+      setFinalGradeLetter("D+");
+    } else if (tempGrade >= 63) {
+      document.getElementById("bubble1").style.backgroundColor = "#fbb040";
+      document.getElementById("bubble2").style.backgroundColor = "#fbb040";
+      setFinalGradeLetter("D");
+    } else if (tempGrade >= 60) {
+      document.getElementById("bubble1").style.backgroundColor = "#fbb040";
+      document.getElementById("bubble2").style.backgroundColor = "#fbb040";
+      setFinalGradeLetter("D-");
+    } else {
+      document.getElementById("bubble1").style.backgroundColor = "#FF3131";
+      document.getElementById("bubble2").style.backgroundColor = "#FF3131";
+      setFinalGradeLetter("F");
+    }
   }, [courseNameList, gradesList, creditsList]);
 
   function addCourseFunction() {
@@ -87,33 +142,24 @@ function ClassGrade() {
     }
   }, [deleteBool]);
 
-  function letterGradeConvertor(percentGrade) {
-    if (percentGrade >= 90) {
-      return "A";
-    } else if (percentGrade >= 80) {
-      return "B";
-    } else if (percentGrade >= 70) {
-      return "C";
-    } else if (percentGrade >= 60) {
-      return "D";
-    } else {
-      return "F";
-    }
-  }
-
   return (
     <div className="bodyPart">
+      <div className="pageTitle">Calculate Class Grade</div>
       <AddClass
         setName={setCourseName}
         setGrade={setGrade}
         setCredits={setCredits}
       />
-      <button onClick={() => addCourseFunction()}>ADD</button>
+      <button className="addButton" onClick={() => addCourseFunction()}>
+        +
+      </button>
       <div className="bubbleHolder">
-        <div className="bubble">{finalGrade.toFixed(2)}</div>
+        <div className="bubble" id="bubble1">
+          {finalGrade}
+        </div>
         <div className="equalSign">=</div>
-        <div className="bubble">
-          {letterGradeConvertor(finalGrade.toFixed(2))}
+        <div className="bubble" id="bubble2">
+          {finalGradeLetter}
         </div>
       </div>
       <div className="coursesDisplay">
@@ -128,6 +174,13 @@ function ClassGrade() {
           />
         ))}
       </div>
+      {courseNameList.length > 1 && (
+        <DeleteAll
+          setDeleteNames={setCourseNameList}
+          setDeleteGrades={setGradesList}
+          setDeleteCredits={setCreditsList}
+        />
+      )}
     </div>
   );
 }

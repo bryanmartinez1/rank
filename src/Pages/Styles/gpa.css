@@ -1,6 +1,11 @@
+.pageTitle {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
 .bodyPart {
     padding: 10px;
-    width: 100vw;
+    width: 100;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,4 +46,26 @@
 .equalSign {
     padding: 2rem;
     font-size: 3rem;
+}
+
+.addButton {
+    margin-top: 5px;
+    
+    border-radius: 100%;
+    border-style: none;
+    
+    height: 50px;
+    width: 50px;
+    
+    font-size: 3rem;
+    font-weight: bolder;
+
+    background: none;
+    background-color: yellowgreen;
+
+    cursor: pointer;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

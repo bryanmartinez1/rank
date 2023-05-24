@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddClass from "./Component/addClass.js";
 import CourseHolder from "./Component/courseHolder.js";
+import DeleteAll from "./Component/deleteAll.js";
 import "./Styles/gpa.css";
 
 function QPA() {
@@ -43,7 +44,6 @@ function QPA() {
   const [deleteBool, setDeleteBool] = useState(false);
 
   useEffect(() => {
-    console.log("Test 1");
     setQPA(qpaCalc(gradesList, creditsList));
   }, [courseNameList, gradesList, creditsList]);
 
@@ -82,12 +82,15 @@ function QPA() {
 
   return (
     <div className="bodyPart">
+      <div className="pageTitle">Calculate QPA</div>
       <AddClass
         setName={setCourseName}
         setGrade={setGrade}
         setCredits={setCredits}
       />
-      <button onClick={() => addCourseFunction()}>ADD</button>
+      <button className="addButton" onClick={() => addCourseFunction()}>
+        +
+      </button>
       <div className="bubble">{qpa}</div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
@@ -101,6 +104,13 @@ function QPA() {
           />
         ))}
       </div>
+      {courseNameList.length > 1 && (
+        <DeleteAll
+          setDeleteNames={setCourseNameList}
+          setDeleteGrades={setGradesList}
+          setDeleteCredits={setCreditsList}
+        />
+      )}
     </div>
   );
 }

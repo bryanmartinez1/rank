@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddClass from "./Component/addClass.js";
 import CourseHolder from "./Component/courseHolder.js";
+import DeleteAll from "./Component/deleteAll.js";
 import "./Styles/gpa.css";
 
 function GPA() {
@@ -47,8 +48,19 @@ function GPA() {
   const [deleteBool, setDeleteBool] = useState(false);
 
   useEffect(() => {
-    console.log("Test 1");
-    setGPA(gpaCalc(gradesList, creditsList));
+    let tempGPA = gpaCalc(gradesList, creditsList);
+    setGPA(tempGPA);
+    if (tempGPA === 4) {
+      document.getElementById("bubble").style.backgroundColor = "#1790d0";
+    } else if (tempGPA >= 2.999) {
+      document.getElementById("bubble").style.backgroundColor = "#50C878";
+    } else if (tempGPA >= 2.75) {
+      document.getElementById("bubble").style.backgroundColor = "#bdfb40";
+    } else if (tempGPA >= 2) {
+      document.getElementById("bubble").style.backgroundColor = "#fbdd40";
+    } else {
+      document.getElementById("bubble").style.backgroundColor = "#FF3131";
+    }
   }, [courseNameList, gradesList, creditsList]);
 
   function addCourseFunction() {
@@ -86,13 +98,18 @@ function GPA() {
 
   return (
     <div className="bodyPart">
+      <div className="pageTitle">Calculate GPA</div>
       <AddClass
         setName={setCourseName}
         setGrade={setGrade}
         setCredits={setCredits}
       />
-      <button onClick={() => addCourseFunction()}>ADD</button>
-      <div className="bubble">{gpa.toFixed(3)}</div>
+      <button className="addButton" onClick={() => addCourseFunction()}>
+        +
+      </button>
+      <div className="bubble" id="bubble">
+        {gpa.toFixed(3)}
+      </div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
           <CourseHolder
@@ -105,6 +122,13 @@ function GPA() {
           />
         ))}
       </div>
+      {courseNameList.length > 1 && (
+        <DeleteAll
+          setDeleteNames={setCourseNameList}
+          setDeleteGrades={setGradesList}
+          setDeleteCredits={setCreditsList}
+        />
+      )}
     </div>
   );
 }
