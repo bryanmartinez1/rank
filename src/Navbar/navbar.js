@@ -18,6 +18,9 @@ function navbar() {
         <li>
           <Link to="/classgrade">Class Grade</Link>
         </li>
+        <li>
+          <Link to="/bellcurve">Bell Curve</Link>
+        </li>
       </ul>
     </nav>
   );

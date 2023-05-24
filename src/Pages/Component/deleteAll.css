@@ -1,0 +1,9 @@
+.deleteHolder {
+    border-style: solid;
+    padding: 5px;
+    background-color: #FF3131;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+    width: 100%;
+}

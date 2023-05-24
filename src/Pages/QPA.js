@@ -44,7 +44,22 @@ function QPA() {
   const [deleteBool, setDeleteBool] = useState(false);
 
   useEffect(() => {
-    setQPA(qpaCalc(gradesList, creditsList));
+    let tempQPA = qpaCalc(gradesList, creditsList);
+    setQPA(tempQPA);
+
+    if (tempQPA >= 40) {
+      document.getElementById("bubble").style.backgroundColor = "#1790d0";
+    } else if (tempQPA >= 20) {
+      document.getElementById("bubble").style.backgroundColor = "#50C878";
+    } else if (tempQPA >= 15) {
+      document.getElementById("bubble").style.backgroundColor = "#bdfb40";
+    } else if (tempQPA >= 7) {
+      document.getElementById("bubble").style.backgroundColor = "#fbdd40";
+    } else if (tempQPA >= 1) {
+      document.getElementById("bubble").style.backgroundColor = "#fbb040";
+    } else {
+      document.getElementById("bubble").style.backgroundColor = "#FF3131";
+    }
   }, [courseNameList, gradesList, creditsList]);
 
   function addCourseFunction() {
@@ -91,7 +106,9 @@ function QPA() {
       <button className="addButton" onClick={() => addCourseFunction()}>
         +
       </button>
-      <div className="bubble">{qpa}</div>
+      <div className="bubble" id="bubble">
+        {qpa}
+      </div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
           <CourseHolder

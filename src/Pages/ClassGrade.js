@@ -53,60 +53,43 @@ function ClassGrade() {
   useEffect(() => {
     let tempGrade = gradeCalc(gradesList, creditsList).toFixed(2);
     setFinalGrade(tempGrade);
-
-    if (tempGrade >= 97) {
-      document.getElementById("bubble1").style.backgroundColor = "#1790d0";
-      document.getElementById("bubble2").style.backgroundColor = "#1790d0";
-      setFinalGradeLetter("A+");
-    } else if (tempGrade >= 93) {
+    let tempLetterGrade = "";
+    if (tempGrade / 10 >= 9) {
+      tempLetterGrade += "A";
       document.getElementById("bubble1").style.backgroundColor = "#50C878";
       document.getElementById("bubble2").style.backgroundColor = "#50C878";
-      setFinalGradeLetter("A");
-    } else if (tempGrade >= 90) {
-      document.getElementById("bubble1").style.backgroundColor = "#50C878";
-      document.getElementById("bubble2").style.backgroundColor = "#50C878";
-      setFinalGradeLetter("A-");
-    } else if (tempGrade >= 87) {
+    } else if (tempGrade / 10 >= 8) {
+      tempLetterGrade += "B";
       document.getElementById("bubble1").style.backgroundColor = "#bdfb40";
       document.getElementById("bubble2").style.backgroundColor = "#bdfb40";
-      setFinalGradeLetter("B+");
-    } else if (tempGrade >= 83) {
-      document.getElementById("bubble1").style.backgroundColor = "#bdfb40";
-      document.getElementById("bubble2").style.backgroundColor = "#bdfb40";
-      setFinalGradeLetter("B");
-    } else if (tempGrade >= 80) {
-      document.getElementById("bubble1").style.backgroundColor = "#bdfb40";
-      document.getElementById("bubble2").style.backgroundColor = "#bdfb40";
-      setFinalGradeLetter("B-");
-    } else if (tempGrade >= 77) {
+    } else if (tempGrade / 10 >= 7) {
+      tempLetterGrade += "C";
       document.getElementById("bubble1").style.backgroundColor = "#fbdd40";
       document.getElementById("bubble2").style.backgroundColor = "#fbdd40";
-      setFinalGradeLetter("C+");
-    } else if (tempGrade >= 73) {
-      document.getElementById("bubble1").style.backgroundColor = "#fbdd40";
-      document.getElementById("bubble2").style.backgroundColor = "#fbdd40";
-      setFinalGradeLetter("C");
-    } else if (tempGrade >= 70) {
-      document.getElementById("bubble1").style.backgroundColor = "#fbdd40";
-      document.getElementById("bubble2").style.backgroundColor = "#fbdd40";
-      setFinalGradeLetter("C-");
-    } else if (tempGrade >= 67) {
+    } else if (tempGrade / 10 >= 6) {
+      tempLetterGrade += "D";
       document.getElementById("bubble1").style.backgroundColor = "#fbb040";
       document.getElementById("bubble2").style.backgroundColor = "#fbb040";
-      setFinalGradeLetter("D+");
-    } else if (tempGrade >= 63) {
-      document.getElementById("bubble1").style.backgroundColor = "#fbb040";
-      document.getElementById("bubble2").style.backgroundColor = "#fbb040";
-      setFinalGradeLetter("D");
-    } else if (tempGrade >= 60) {
-      document.getElementById("bubble1").style.backgroundColor = "#fbb040";
-      document.getElementById("bubble2").style.backgroundColor = "#fbb040";
-      setFinalGradeLetter("D-");
     } else {
+      tempLetterGrade += "F";
       document.getElementById("bubble1").style.backgroundColor = "#FF3131";
       document.getElementById("bubble2").style.backgroundColor = "#FF3131";
-      setFinalGradeLetter("F");
     }
+
+    if (tempLetterGrade !== "F") {
+      if (tempGrade % 10 >= 7) {
+        tempLetterGrade += "+";
+      } else if (tempGrade % 10 <= 3) {
+        tempLetterGrade += "-";
+      }
+    }
+
+    if (tempGrade >= 100) {
+      document.getElementById("bubble1").style.backgroundColor = "#1790d0";
+      document.getElementById("bubble2").style.backgroundColor = "#1790d0";
+      tempLetterGrade = "A+";
+    }
+    setFinalGradeLetter(tempLetterGrade);
   }, [courseNameList, gradesList, creditsList]);
 
   function addCourseFunction() {

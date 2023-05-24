@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import GPA from "./Pages/GPA";
 import QPA from "./Pages/QPA";
 import ClassGrade from "./Pages/ClassGrade";
+import BellCurve from "./Pages/BellCurve";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/gpa" element={<GPA />} />
           <Route path="/qpa" element={<QPA />} />
           <Route path="/classgrade" element={<ClassGrade />} />
+          <Route path="/bellCurve" element={<BellCurve />} />
         </Routes>
       </div>
     </div>
