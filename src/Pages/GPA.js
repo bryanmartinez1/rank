@@ -25,6 +25,7 @@ function GPA() {
     let totalPoints = 0;
     let totalCredits = 0;
     if (gradesList.length === 0) {
+      setTotalCredits(0);
       return 0;
     }
     for (let i = 0; i < gradesList.length; i++) {
@@ -32,6 +33,7 @@ function GPA() {
       totalCredits += Number(creditsList[i]);
     }
     let tempGPA = totalPoints / totalCredits;
+    setTotalCredits(totalCredits);
     tempGPA = Math.round(tempGPA * 1000) / 1000;
     return tempGPA;
   }
@@ -43,7 +45,7 @@ function GPA() {
   const [courseNameList, setCourseNameList] = useState([]);
   const [gradesList, setGradesList] = useState([]);
   const [creditsList, setCreditsList] = useState([]);
-
+  const [totalCredits, setTotalCredits] = useState(0);
   const [deleteIndex, setDeleteIndex] = useState();
   const [deleteBool, setDeleteBool] = useState(false);
 
@@ -110,6 +112,7 @@ function GPA() {
       <div className="bubble" id="bubble">
         {gpa.toFixed(3)}
       </div>
+      <div className="credits">Credits Taken: {totalCredits}</div>
       <div className="coursesDisplay">
         {courseNameList.map((name, index) => (
           <CourseHolder

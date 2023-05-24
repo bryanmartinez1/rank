@@ -1,5 +1,4 @@
 import React from "react";
-import "./deleteAll.css";
 
 function DeleteAll(props) {
   function deleteAllFunction() {
