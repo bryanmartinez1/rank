@@ -24,11 +24,15 @@ function DeleteAll(props) {
             <h2>Hello Pop Up Screen</h2>
             <p>Are you sure you want to delete all previoulsy entered data?</p>
             <div className="confirmButtonHolder">
-              <button className="close-pop-up" onClick={() => toggle()}>
-                Close
+              <button className="closePopUp" onClick={() => toggle()}>
+                x
               </button>
-              <button onClick={() => deleteAllFunction()}>Yes</button>
-              <button onClick={() => toggle()}>No</button>
+              <button className="yesButton" onClick={() => deleteAllFunction()}>
+                Yes
+              </button>
+              <button className="noButton" onClick={() => toggle()}>
+                No
+              </button>
             </div>
           </div>
         </div>
