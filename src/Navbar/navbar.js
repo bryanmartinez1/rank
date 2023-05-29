@@ -19,6 +19,9 @@ function navbar() {
           <Link to="/classgrade">Class Grade</Link>
         </li>
         <li>
+          <Link to="/average">Average</Link>
+        </li>
+        <li>
           <Link to="/graph">Graph</Link>
         </li>
         <li>

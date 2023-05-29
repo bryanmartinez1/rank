@@ -24,6 +24,7 @@
 }
 
 .addCol input {
-    width: 25%;
     min-width: 200px;
+    border-radius: 15px;
+    padding-left: 5px;
 } 

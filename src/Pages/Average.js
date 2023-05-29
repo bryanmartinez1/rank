@@ -4,7 +4,7 @@ import CourseHolder from "./Component/courseHolder.js";
 import DeleteAll from "./Component/deleteAll.js";
 import "./Styles/gpa.css";
 
-function GPA() {
+function Average() {
   // Hash Map
   var gradeMap = new Map();
   gradeMap.set("A+", 4.0);
@@ -146,4 +146,4 @@ function GPA() {
   );
 }
 
-export default GPA;
+export default Average;

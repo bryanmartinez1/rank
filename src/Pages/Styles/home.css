@@ -1,0 +1,13 @@
+.homeBody {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.columnBody {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
