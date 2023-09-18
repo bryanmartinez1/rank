@@ -21,7 +21,7 @@ function DeleteAll(props) {
         <div className="pop-up">
           <div className="overlay" onClick={() => toggle()} />
           <div className="pop-up-content">
-            <h2>Hello Pop Up Screen</h2>
+            <h2>Delete All?</h2>
             <p>Are you sure you want to delete all previoulsy entered data?</p>
             <div className="confirmButtonHolder">
               <button className="closePopUp" onClick={() => toggle()}>
