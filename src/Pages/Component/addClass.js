@@ -11,7 +11,7 @@ function AddClass(props) {
             type="text"
             id="nameInput"
             placeholder="name"
-            maxLength={20}
+            maxLength={25}
             onChange={() =>
               props.setName(document.getElementById("nameInput").value)
             }
@@ -23,7 +23,7 @@ function AddClass(props) {
             type="text"
             id="gradeInput"
             placeholder="grade"
-            maxLength={20}
+            maxLength={25}
             onChange={() =>
               props.setGrade(document.getElementById("gradeInput").value)
             }
@@ -35,7 +35,7 @@ function AddClass(props) {
             type="number"
             id="creditsInput"
             placeholder="worth"
-            maxLength={20}
+            maxLength={25}
             onChange={() =>
               props.setCredits(document.getElementById("creditsInput").value)
             }
